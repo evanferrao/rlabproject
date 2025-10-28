@@ -20,18 +20,9 @@ The data was split into:
 - **Training set:** All data up to 30 days before the end of the series  
 - **Testing set:** Final 30 days used as the forecast horizon
 
-![exploration1](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration1.png?raw=true)
-
-*Figure: PM2.5 Levels over time*
-
-
-![exploration1](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration2.png?raw=true)
-
-*Figure: PM2.5 Levels in november 2017*
-
-![exploration1](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration4.png?raw=true)
-
-*Figure: Weekly analysis*
+| ![exploration1](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration1.png?raw=true)| ![exploration2](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration2.png?raw=true) | ![exploration4](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration4.png?raw=true) |
+|:---:|:---:|:---:|
+| *PM2.5 Levels over time* | *PM2.5 Levels in november 2017* | *Weekly analysis* |
 
 ## 3. Model Implementations
 
@@ -47,9 +38,10 @@ arima_forecast <- forecast(arima_model, h = 30)
 
 The ARIMA model effectively captured short-term dependencies and trend variations. However, it lacks explicit mechanisms to handle **holiday effects** or **multiple seasonalities**.
 
-![forecast](https://github.com/evanferrao/rlabproject/blob/main/assets/aforecast1.png?raw=true)
-
-*Figure: Daily Aggregated AQI Forecast using ARIMA*
+<p align="center">
+  <img src="https://github.com/evanferrao/rlabproject/blob/main/assets/aforecast1.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using ARIMA"><br>
+  <em>Figure: Daily Aggregated AQI Forecast using ARIMA</em>
+</p>
 
 
 ### 3.2 Prophet Model
@@ -65,17 +57,21 @@ forecast <- predict(prophet_model, future)
 
 Holidays such as *Diwali* and *New Year* were incorporated to improve prediction around these special periods.
 
-![forecast](https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast1.png?raw=true)
+<p align="center">
+  <img src="https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast1.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using Prophet"><br>
+  <em>Figure: 7 Day AQI Forecast using Prophet</em>
+</p>
 
-*Figure: 7 Day AQI Forecast using prophet*
+<p align="center">
+  <img src="https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast2.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using Prophet"><br>
+  <em>Figure: Historical Prediction using Prophet</em>
+</p>
 
-![forecast](https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast2.png?raw=true)
+<p align="center">
+  <img src="https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast3.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using Prophet"><br>
+  <em>Figure: Future Prediction using Prophet</em>
+</p>
 
-*Figure: Historical Prediction using prophet*
-
-![forecast](https://github.com/evanferrao/rlabproject/blob/main/assets/pforecast3.png?raw=true)
-
-*Figure: Future Prediction using prophet*
 
 
 ## 4. Visualization
@@ -164,10 +160,11 @@ Displays long-term seasonality and trends (e.g., annual cycles).
 ```r
 prophet_plot_components(prophet_model, forecast)  # yearly trends visible here
 ```
+<p align="center">
+<img src="https://github.com/evanferrao/rlabproject/blob/main/assets/exploration3.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using ARIMA"><br>
+<em>Figure: Yearly Insight</em>
 
-![yearly](https://github.com/evanferrao/rlabproject/blob/main/assets/exploration3.png?raw=true)
-
-*Figure: Yearly Insight*
+</p>
 
 ### **Monthly Zoom**
 
@@ -176,10 +173,10 @@ Highlights short-term fluctuations and model responsiveness to recent data.
 ```r
 plot(forecast$ds, forecast$yhat, type='l', main='Prophet Monthly Zoom', xlim=c(as.Date('2022-05-01'), as.Date('2022-06-04')))
 ```
-![monthly](https://github.com/evanferrao/rlabproject/blob/main/assets/pverify1.png?raw=true)
-
-*Figure: Monthly Insight*
-
+<p align="center">
+<img src="https://github.com/evanferrao/rlabproject/blob/main/assets/pverify1.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using ARIMA"><br>
+<em>Figure: Monthly Insight</em>
+</p>
 
 
 ## 9. Conclusion
@@ -193,13 +190,18 @@ This comparative study demonstrates that **Prophet significantly outperforms ARI
 In contrast, **ARIMA** struggles with complex seasonalities and event-driven fluctuations.
 Nevertheless, ARIMA’s statistical rigor and simplicity make it a reliable baseline model.
 
-![finalforecast](https://github.com/evanferrao/rlabproject/blob/main/assets/finalforecast1.png?raw=true)
 
-*Figure: Historical Dataset Prediction comparision between Prophet and ARIMA*
+<p align="center">
+<img src="https://github.com/evanferrao/rlabproject/blob/main/assets/finalforecast1.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using ARIMA"><br>
+<em>Figure: Future Prediction comparison between Prophet and ARIMA</em>
+</p>
 
-![finalforecast](https://github.com/evanferrao/rlabproject/blob/main/assets/finalforecast2.png?raw=true)
+<p align="center">
+  <img src="https://github.com/evanferrao/rlabproject/blob/main/assets/finalforecast2.png?raw=true" width="400" alt="Daily Aggregated AQI Forecast using ARIMA"><br>
+  <em>Figure: Future Prediction comparison between Prophet and ARIMA</em>
+</p>
 
-*Figure: Future Prediction comparision between Prophet and ARIMA*
+
 
 **Final Verdict:**
  *Prophet is the superior model for daily average forecasts in this dataset, especially when seasonal and event-driven variations are present.*
